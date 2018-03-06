@@ -31,7 +31,7 @@ if __name__ == '__main__':
     t = time.time()
     base_url = 'https://prog.nfz.gov.pl/app-jgp/KatalogJGP.aspx'
     ecgs = [];
-    years = list(range(2009, 2016)) #2009-2016
+    years = list(range(2009, 2017)) #2009 - 2016
 
     with requests.Session() as session:
         session.headers = {'User-Agent': 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_10_2) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/40.0.2214.115 Safari/537.36'}
@@ -42,7 +42,10 @@ if __name__ == '__main__':
 
         for year in years:
             annual_ecg_count = 0
-            selection = soup.find('option',text = "Rok " + str(year) + " - Katalog 1a")
+            ending = " - Katalog 1a"
+            #ending = " - Katalog 1w - Ĺwiadczenia wysokospecjalistyczne"
+            
+            selection = soup.find('option',text = "Rok " + str(year) + ending)
             if selection:
                 form_1_code = selection.get('value')
                 
@@ -70,7 +73,7 @@ if __name__ == '__main__':
 
             ecgs.append([str(year),str(annual_ecg_count)])
             
-    csv_out_name = "annual_ECG.csv"
+    csv_out_name = "annual_ECG_1a.csv"
     with open(csv_out_name, "w") as f:
         writer = csv.writer(f)
         writer.writerows(ecgs)

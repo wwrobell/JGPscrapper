@@ -21,7 +21,7 @@ def scrape_url(url):
                 if wanted_icds.findall(icd_num.text): #find icds which fit to pattern
                     quantity = tr.find('td', class_="prawa") #get number of hospitalizations
                     quantity_sum += int(quantity.text)
-                    print (icd_num.contents[0],quantity.contents[0])
+                    #print (icd_num.contents[0],quantity.contents[0])
     return quantity_sum
 
 if __name__ == '__main__':
