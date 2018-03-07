@@ -1,6 +1,6 @@
 from bs4 import BeautifulSoup
-import requests
 from url_ecg_counter import scrape_url
+import requests
 import time
 import csv
 

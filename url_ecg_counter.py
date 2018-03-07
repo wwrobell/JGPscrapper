@@ -22,6 +22,7 @@ def scrape_url(url):
                     quantity = tr.find('td', class_="prawa") #get number of hospitalizations
                     quantity_sum += int(quantity.text)
                     #print (icd_num.contents[0],quantity.contents[0])
+    print(str(quantity_sum))
     return quantity_sum
 
 if __name__ == '__main__':
